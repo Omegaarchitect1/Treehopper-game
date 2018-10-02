@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    public Rigidbody2D myRigidbody;
+    [SerializeField]
+    private Rigidbody2D rb2d;
+    [SerializeField]
+    private float speed;
 
-	// Use this for initialization
-	void Start () {
+    private float HorizontalInput;
+
+    // Use this for initialization
+    void Start() {
         Debug.Log("This is Start");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.D))
-        {
-            myRigidbody.velocity = new Vector2(5,myRigidbody.velocity.y);
-            //Move right
-        }
+    }
+
+    // Update is called once per frame
+    void Update() {
+        HorizontalInput = Input.GetAxis("Horizontal");
+
+
         //this is the syntax for printing to the console. 
         //Debug.Log("Test");
 
-	}
+    }
+
+    void FixedUpdate()
+    {
+        rb2d.AddForce(Vector2.right * HorizontalInput * speed);
+
+    }
 }
