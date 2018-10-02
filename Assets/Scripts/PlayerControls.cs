@@ -7,7 +7,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb2d;
     [SerializeField]
-    private float speed;
+    private float accelerationForce;
+    [SerializeField]
+    private float maxSpeed = 5;
 
     private float HorizontalInput;
 
@@ -28,7 +30,9 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb2d.AddForce(Vector2.right * HorizontalInput * speed);
-
+        rb2d.AddForce(Vector2.right * HorizontalInput * accelerationForce);
+        Vector2 clampedVelocity = rb2d.velocity;
+        clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, - maxSpeed, maxSpeed);
+        rb2d.velocity = clampedVelocity;
     }
 }

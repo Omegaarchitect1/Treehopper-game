@@ -300,7 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bddea5ed0c4024b9a0877c6af09b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRigidbody: {fileID: 57949168}
+  rb2d: {fileID: 57949168}
+  accelerationForce: 20
+  maxSpeed: 5
 --- !u!1001 &123309845
 Prefab:
   m_ObjectHideFlags: 0
@@ -314,7 +316,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4578914950621258, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.7
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 4578914950621258, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_LocalPosition.z
@@ -499,7 +501,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4578914950621258, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.81
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 4578914950621258, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_LocalPosition.z
