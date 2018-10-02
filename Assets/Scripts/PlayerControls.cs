@@ -10,6 +10,8 @@ public class PlayerControls : MonoBehaviour
     private float accelerationForce;
     [SerializeField]
     private float maxSpeed = 5;
+    [SerializeField]
+    private float JumpForce = 2;
 
     private float HorizontalInput;
 
@@ -22,7 +24,10 @@ public class PlayerControls : MonoBehaviour
     void Update() {
         HorizontalInput = Input.GetAxis("Horizontal");
 
-
+        if (Input.GetButtonDown("Jump"))
+        {
+            rb2d.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+        }
         //this is the syntax for printing to the console. 
         //Debug.Log("Test");
 
@@ -30,9 +35,14 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb2d.AddForce(Vector2.right * HorizontalInput * accelerationForce);
-        Vector2 clampedVelocity = rb2d.velocity;
-        clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, - maxSpeed, maxSpeed);
+        Move();
+    }
+
+    private void Move()
+    {
+    rb2d.AddForce(Vector2.right* HorizontalInput * accelerationForce);
+    Vector2 clampedVelocity = rb2d.velocity;
+    clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, - maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
     }
 }
