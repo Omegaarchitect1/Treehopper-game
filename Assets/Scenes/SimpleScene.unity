@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 57949168}
   - component: {fileID: 57949171}
   - component: {fileID: 57949172}
+  - component: {fileID: 57949173}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -205,7 +206,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &57949169
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -258,7 +259,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 57949167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.42, y: -3.54, z: 0}
+  m_LocalPosition: {x: -9.42, y: -3.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -272,7 +273,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 57949167}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c87fc25196abce744b363a407f12ad32, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -301,8 +302,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 57949168}
-  accelerationForce: 20
-  maxSpeed: 5
+  groundContact:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  accelerationForce: 30
+  maxSpeed: 10
+  JumpForce: 10
+  GroundDetectTrigger: {fileID: 57949173}
+--- !u!58 &57949173
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57949167}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.16}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &123309845
 Prefab:
   m_ObjectHideFlags: 0
@@ -484,6 +516,10 @@ Prefab:
     - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_Name
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
