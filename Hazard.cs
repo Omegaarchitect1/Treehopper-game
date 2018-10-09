@@ -9,7 +9,8 @@ private void OnTriggerEnter2D(Collider2D collision)
         if(collision.gameObject.CompareTag("Player"))
         {
              Debug.Log("YOU ARE DEAD. NOT BIG SUPRISE.");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            PlayerControls player = collision.GetComponent<PlayerControls>();
+            player.Respawn();
         }
         else
         {

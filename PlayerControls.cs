@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -28,9 +29,11 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private PhysicsMaterial2D playerMovingPhysicsMaterial, playerStoppingPhysicsMaterial;
 
+
     private float HorizontalInput;
     private Collider2D[] GroundHitDetectionResults = new Collider2D[16];
     private bool isOnGround;
+    private Checkpoint currentCheckpoint;
 
     // Use this for initialization
     void Start() {
@@ -92,5 +95,21 @@ public class PlayerControls : MonoBehaviour
     Vector2 clampedVelocity = rb2d.velocity;
     clampedVelocity.x = Mathf.Clamp(rb2d.velocity.x, - maxSpeed, maxSpeed);
         rb2d.velocity = clampedVelocity;
+    }
+
+    public void Respawn()
+    {
+        if (currentCheckpoint == null)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+            transform.position = currentCheckpoint.transform.position;
+        }
+    }
+
+    public void SetCurrentCheckpoint(Checkpoint newcurrentCheckpoint)
+    {
+        currentCheckpoint = newcurrentCheckpoint;
     }
 }
