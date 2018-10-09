@@ -68,7 +68,7 @@ public class PlayerControls : MonoBehaviour
 
     private void UpdateHorizontalInput()
     {
-        HorizontalInput = Input.GetAxis("Horizontal");
+        HorizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
     private void Jump()
