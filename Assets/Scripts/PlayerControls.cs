@@ -6,20 +6,31 @@ public class PlayerControls : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb2d;
+
     [SerializeField]
-    private ContactFilter2D groundContact;
+    private Collider2D playerGroundCollider;
+
+    [SerializeField]
+    private ContactFilter2D groundContactFilter;
+
     [SerializeField]
     private float accelerationForce;
+
     [SerializeField]
     private float maxSpeed = 5;
+
     [SerializeField]
     private float JumpForce = 2;
+
     [SerializeField]
     private Collider2D GroundDetectTrigger;
 
+    [SerializeField]
+    private PhysicsMaterial2D playerMovingPhysicsMaterial, playerStoppingPhysicsMaterial;
+
     private float HorizontalInput;
     private Collider2D[] GroundHitDetectionResults = new Collider2D[16];
-    private bool IsOnGround;
+    private bool isOnGround;
 
     // Use this for initialization
     void Start() {
@@ -31,14 +42,27 @@ public class PlayerControls : MonoBehaviour
         UpdateIsOnGround();
         UpdateHorizontalInput();
         Jump();
+      
         //this is the syntax for printing to the console. 
         //Debug.Log("Test");
 
     }
 
+    private void UpdatePhysicsMaterial()
+    {
+        if (Mathf.Abs(HorizontalInput) > 0)
+        {
+            playerGroundCollider.sharedMaterial = playerMovingPhysicsMaterial;
+        }
+        else
+        {
+            playerGroundCollider.sharedMaterial = playerStoppingPhysicsMaterial;
+        }
+    }
+
     private void UpdateIsOnGround()
     {
-        IsOnGround = GroundDetectTrigger.OverlapCollider(groundContact, GroundHitDetectionResults) > 0;
+        isOnGround = GroundDetectTrigger.OverlapCollider(groundContactFilter, GroundHitDetectionResults) > 0;
         //Debug.Log("Is on Ground: " + IsOnGround);
     }
 
@@ -49,7 +73,7 @@ public class PlayerControls : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && IsOnGround)
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
             rb2d.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
 
@@ -58,6 +82,7 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
+        UpdatePhysicsMaterial();
         Move();
     }
 

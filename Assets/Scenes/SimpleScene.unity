@@ -164,6 +164,10 @@ Prefab:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
   m_IsPrefabParent: 0
@@ -259,7 +263,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 57949167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.42, y: -3.26, z: 0}
+  m_LocalPosition: {x: -9.42, y: -3.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -273,7 +277,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 57949167}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: c87fc25196abce744b363a407f12ad32, type: 2}
+  m_Material: {fileID: 6200000, guid: 53b8743fd267fc04a8ceeac2208f0755, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -302,9 +306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 57949168}
-  groundContact:
+  playerGroundCollider: {fileID: 57949171}
+  groundContactFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
@@ -317,9 +322,13 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   accelerationForce: 30
-  maxSpeed: 10
-  JumpForce: 10
+  maxSpeed: 5
+  JumpForce: 5
   GroundDetectTrigger: {fileID: 57949173}
+  playerMovingPhysicsMaterial: {fileID: 6200000, guid: ba2b4fa72b7e5f44083b8a309a1b96a9,
+    type: 2}
+  playerStoppingPhysicsMaterial: {fileID: 6200000, guid: 53b8743fd267fc04a8ceeac2208f0755,
+    type: 2}
 --- !u!58 &57949173
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -329,7 +338,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.16}
@@ -377,6 +386,10 @@ Prefab:
     - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_Name
       value: Hurdle1Tall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
@@ -566,6 +579,10 @@ Prefab:
     - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
       propertyPath: m_Name
       value: Hurdle2Tall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670475329173652, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487f1cb8265a4a148be2d572a9a31e12, type: 2}
