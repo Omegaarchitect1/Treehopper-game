@@ -78,9 +78,5 @@ public class Checkpoint : MonoBehaviour
             player.SetCurrentCheckpoint(this);
             audiosource.Play();
         }
-        else
-        {
-            Debug.Log("Wait, who are you?");
-        }
     }
 }
