@@ -110,6 +110,10 @@ public class PlayerControls : MonoBehaviour
 
     public void SetCurrentCheckpoint(Checkpoint newcurrentCheckpoint)
     {
+        if (currentCheckpoint != null)
+            currentCheckpoint.setIsActivated(false);
+
         currentCheckpoint = newcurrentCheckpoint;
+        currentCheckpoint.setIsActivated(true);
     }
 }
